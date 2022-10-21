@@ -1,0 +1,7 @@
+@import url("/Gilroy-Light.otf");
+/* * {
+  font-family: "Gilroy-Light", san-serif;
+} */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
