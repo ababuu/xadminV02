@@ -138,7 +138,9 @@ export default function Shared({ children, tab }: Props) {
           <Divider />
         </div>
         <List
-          className={`text-lg ${open ? "ml-5" : ""} transition-all duration-${
+          className={`text-lg ${
+            open ? "ml-5" : "ml-3"
+          } transition-all duration-${
             theme.transitions.duration.leavingScreen
           }`}
         >

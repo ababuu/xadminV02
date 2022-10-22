@@ -18,7 +18,7 @@ const Home: NextPage = () => {
   const Home = () => {
     return (
       <div className="bg-gray-100 p-8 pt-8">
-        <div className="flex justify-center md:justify-end lg:justify-end">
+        <div className="flex justify-center md:justify-end lg:justify-end lg:mr-[5%]">
           <div className="flex gap-2">
             <div className="border rounded-xl w-fit p-1 pl-4 pr-4 bg-[#14EA83] text-white hover:bg-[#14EA83] hover:text-white cursor-pointer">
               All
