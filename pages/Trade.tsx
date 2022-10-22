@@ -9,7 +9,7 @@ export default function Trade({}: Props) {
   };
   return (
     <>
-      <Shared>
+      <Shared tab="trade">
         <Trade />
       </Shared>
     </>

@@ -9,7 +9,7 @@ export default function History({}: Props) {
   };
   return (
     <>
-      <Shared>
+      <Shared tab="history">
         <History />
       </Shared>
     </>

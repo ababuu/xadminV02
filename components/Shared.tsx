@@ -21,10 +21,12 @@ import HistoryIcon from "@mui/icons-material/History";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-const drawerWidth = 240;
+const drawerWidth = 255;
 
 const openedMixin = (theme: Theme): CSSObject => ({
   width: drawerWidth,
+  borderRight: 0,
+  boxShadow: "4px 4px 40px rgba(0, 0, 0, 0.06)",
   transition: theme.transitions.create("width", {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.enteringScreen,
@@ -33,6 +35,8 @@ const openedMixin = (theme: Theme): CSSObject => ({
 });
 
 const closedMixin = (theme: Theme): CSSObject => ({
+  borderRight: 0,
+  boxShadow: "4px 4px 40px rgba(0, 0, 0, 0.06)",
   transition: theme.transitions.create("width", {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
@@ -100,9 +104,10 @@ const Drawer = styled(MuiDrawer, {
 }));
 type Props = {
   children: React.ReactNode | React.ReactNode[];
+  tab: string;
 };
 
-export default function Shared({ children }: Props) {
+export default function Shared({ children, tab }: Props) {
   const theme = useTheme();
   const { asPath } = useRouter();
   const [open, setOpen] = React.useState(true);
@@ -118,7 +123,11 @@ export default function Shared({ children }: Props) {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
+      <AppBar
+        position="fixed"
+        open={open}
+        className={`${tab !== "home" ? "hidden" : ""}`}
+      >
         <Toolbar></Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open} className="relative">
@@ -128,16 +137,22 @@ export default function Shared({ children }: Props) {
         <div className="pl-10 pr-10">
           <Divider />
         </div>
-        <List className="text-lg">
+        <List
+          className={`text-lg ${open ? "ml-5" : ""} transition-all duration-${
+            theme.transitions.duration.leavingScreen
+          }`}
+        >
           <Link href="/">
             <a>
               <ListItem disablePadding sx={{ display: "block" }}>
                 <ListItemButton
                   sx={{
-                    minHeight: 48,
                     justifyContent: open ? "initial" : "center",
                     px: 2.5,
                   }}
+                  className={`rounded-lg mr-16 mb-3 mt-4 h-[30px] ${
+                    asPath === "/" ? "bg-green-100" : ""
+                  }`}
                 >
                   <ListItemIcon
                     sx={{
@@ -154,8 +169,8 @@ export default function Shared({ children }: Props) {
                   </ListItemIcon>
                   <ListItemText sx={{ opacity: open ? 1 : 0, fontSize: "2px" }}>
                     <p
-                      className={`text-sm ${
-                        asPath === "/" ? "text-[#27AE60]" : ""
+                      className={`text-sm hover:cursor-pointer ${
+                        asPath === "/" ? "text-[#27AE60]" : "text-gray-700"
                       }`}
                     >
                       Dashboard
@@ -171,10 +186,12 @@ export default function Shared({ children }: Props) {
               <a>
                 <ListItemButton
                   sx={{
-                    minHeight: 48,
                     justifyContent: open ? "initial" : "center",
                     px: 2.5,
                   }}
+                  className={`rounded-lg mr-16 mb-3 h-[30px] ${
+                    asPath === "/Users" ? "bg-green-100" : ""
+                  }`}
                 >
                   <ListItemIcon
                     sx={{
@@ -191,8 +208,8 @@ export default function Shared({ children }: Props) {
                   </ListItemIcon>
                   <ListItemText sx={{ opacity: open ? 1 : 0, fontSize: "2px" }}>
                     <p
-                      className={`text-sm ${
-                        asPath === "/Users" ? "text-[#27AE60]" : ""
+                      className={`text-sm hover:cursor-pointer ${
+                        asPath === "/Users" ? "text-[#27AE60]" : "text-gray-700"
                       }`}
                     >
                       Users
@@ -207,10 +224,12 @@ export default function Shared({ children }: Props) {
               <a>
                 <ListItemButton
                   sx={{
-                    minHeight: 48,
                     justifyContent: open ? "initial" : "center",
                     px: 2.5,
                   }}
+                  className={`rounded-lg mr-16 mb-3 h-[30px] ${
+                    asPath === "/Trade" ? "bg-green-100" : ""
+                  }`}
                 >
                   <ListItemIcon
                     sx={{
@@ -227,8 +246,8 @@ export default function Shared({ children }: Props) {
                   </ListItemIcon>
                   <ListItemText sx={{ opacity: open ? 1 : 0, fontSize: "2px" }}>
                     <p
-                      className={`text-sm ${
-                        asPath === "/Trade" ? "text-[#27AE60]" : ""
+                      className={`text-sm hover:cursor-pointer ${
+                        asPath === "/Trade" ? "text-[#27AE60]" : "text-gray-700"
                       }`}
                     >
                       Trade
@@ -243,10 +262,12 @@ export default function Shared({ children }: Props) {
               <a>
                 <ListItemButton
                   sx={{
-                    minHeight: 48,
                     justifyContent: open ? "initial" : "center",
                     px: 2.5,
                   }}
+                  className={`rounded-lg mr-16 mb-3 h-[30px] ${
+                    asPath === "/Orders" ? "bg-green-100" : ""
+                  }`}
                 >
                   <ListItemIcon
                     sx={{
@@ -256,15 +277,17 @@ export default function Shared({ children }: Props) {
                     }}
                   >
                     <ViewInArIcon
-                      className={`text-sm ${
+                      className={`text-sm  ${
                         asPath === "/Orders" ? "text-[#27AE60]" : ""
                       }`}
                     />
                   </ListItemIcon>
                   <ListItemText sx={{ opacity: open ? 1 : 0, fontSize: "2px" }}>
                     <p
-                      className={`text-sm ${
-                        asPath === "/Orders" ? "text-[#27AE60]" : ""
+                      className={`text-sm hover:cursor-pointer ${
+                        asPath === "/Orders"
+                          ? "text-[#27AE60]"
+                          : "text-gray-700"
                       }`}
                     >
                       Orders
@@ -279,10 +302,12 @@ export default function Shared({ children }: Props) {
               <a>
                 <ListItemButton
                   sx={{
-                    minHeight: 48,
                     justifyContent: open ? "initial" : "center",
                     px: 2.5,
                   }}
+                  className={`rounded-lg mr-16 mb-2 h-[30px] ${
+                    asPath === "/History" ? "bg-green-100" : ""
+                  }`}
                 >
                   <ListItemIcon
                     sx={{
@@ -299,8 +324,10 @@ export default function Shared({ children }: Props) {
                   </ListItemIcon>
                   <ListItemText sx={{ opacity: open ? 1 : 0, fontSize: "2px" }}>
                     <p
-                      className={`text-sm ${
-                        asPath === "/History" ? "text-[#27AE60]" : ""
+                      className={`text-sm hover:cursor-pointer ${
+                        asPath === "/History"
+                          ? "text-[#27AE60]"
+                          : "text-gray-700"
                       }`}
                     >
                       History
@@ -326,7 +353,7 @@ export default function Shared({ children }: Props) {
           </IconButton>
         </DrawerHeader>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box component="main" sx={{ flexGrow: 1 }}>
         <DrawerHeader />
         {children}
       </Box>

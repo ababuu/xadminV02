@@ -9,7 +9,7 @@ export default function Orders({}: Props) {
   };
   return (
     <>
-      <Shared>
+      <Shared tab="orders">
         <Orders />
       </Shared>
     </>

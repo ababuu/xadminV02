@@ -1,7 +1,21 @@
-@import url("/Gilroy-Light.otf");
-/* * {
-  font-family: "Gilroy-Light", san-serif;
-} */
+@font-face {
+  font-family: "Gilroy";
+  src: url("/font/Gilroy-Light.otf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("/font/Gilroy-ExtraBold.otf");
+  font-weight: bold;
+  font-style: normal;
+}
+
+* {
+  font-family: "Gilroy", san-serif !important;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

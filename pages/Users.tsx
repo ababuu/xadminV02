@@ -9,7 +9,7 @@ export default function Users({}: Props) {
   };
   return (
     <>
-      <Shared>
+      <Shared tab="users">
         <Users />
       </Shared>
     </>
