@@ -19,10 +19,3 @@
 * {
   font-family: "Gilroy", san-serif !important;
 }
-.MuiTableRow-root td:nth-child(even): {
-  backgroundcolor: "#FAF7FA";
-}
-.MuiTableCell-root tr {
-  /* padding: 0 40px !important; */
-  height: 2px !important;
-}
