@@ -20,6 +20,9 @@ import ViewInArIcon from "@mui/icons-material/ViewInAr";
 import HistoryIcon from "@mui/icons-material/History";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
+import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
+import Image from "next/image";
 
 const drawerWidth = 255;
 
@@ -132,7 +135,33 @@ export default function Shared({ children, tab }: Props) {
       </AppBar>
       <Drawer variant="permanent" open={open} className="relative">
         <DrawerHeader className="relative">
-          <p className="absolute left-2">Logo</p>
+          <div className="absolute left-4">
+            <Image
+              src="/images/logo.png"
+              alt="Bitcoin"
+              width={25}
+              height={25}
+            />
+          </div>
+          <div
+            className={`absolute left-12 text-[25px] mb-1 font-bold ${
+              !open && "hidden"
+            }`}
+          >
+            <Image
+              src="/images/rubix.png"
+              alt="Bitcoin"
+              width={74.74}
+              height={21.95}
+            />
+          </div>
+          {/* <p
+            className={`absolute left-12 text-[25px] mb-1 font-bold ${
+              !open && "hidden"
+            }`}
+          >
+            rubix
+          </p> */}
         </DrawerHeader>
         <div className="pl-10 pr-10">
           <Divider />
@@ -144,9 +173,9 @@ export default function Shared({ children, tab }: Props) {
             theme.transitions.duration.leavingScreen
           }`}
         >
-          <Link href="/">
-            <a>
-              <ListItem disablePadding sx={{ display: "block" }}>
+          <ListItem disablePadding sx={{ display: "block" }}>
+            <Link href="/">
+              <a>
                 <ListItemButton
                   sx={{
                     justifyContent: open ? "initial" : "center",
@@ -179,9 +208,9 @@ export default function Shared({ children, tab }: Props) {
                     </p>
                   </ListItemText>
                 </ListItemButton>
-              </ListItem>
-            </a>
-          </Link>
+              </a>
+            </Link>
+          </ListItem>
 
           <ListItem disablePadding sx={{ display: "block" }}>
             <Link href="/Users">
@@ -260,7 +289,7 @@ export default function Shared({ children, tab }: Props) {
             </Link>
           </ListItem>
           <ListItem disablePadding sx={{ display: "block" }}>
-            <Link href="/Orders">
+            <Link href="/Transactions">
               <a>
                 <ListItemButton
                   sx={{
@@ -278,21 +307,61 @@ export default function Shared({ children, tab }: Props) {
                       justifyContent: "center",
                     }}
                   >
-                    <ViewInArIcon
+                    <CurrencyExchangeIcon
                       className={`text-sm  ${
-                        asPath === "/Orders" ? "text-[#27AE60]" : ""
+                        asPath === "/Transactions" ? "text-[#27AE60]" : ""
                       }`}
                     />
                   </ListItemIcon>
                   <ListItemText sx={{ opacity: open ? 1 : 0, fontSize: "2px" }}>
                     <p
                       className={`text-sm hover:cursor-pointer ${
-                        asPath === "/Orders"
+                        asPath === "/Transactions"
                           ? "text-[#27AE60]"
                           : "text-gray-700"
                       }`}
                     >
-                      Orders
+                      Transactions
+                    </p>
+                  </ListItemText>
+                </ListItemButton>
+              </a>
+            </Link>
+          </ListItem>
+          <ListItem disablePadding sx={{ display: "block" }}>
+            <Link href="/Liquidity">
+              <a>
+                <ListItemButton
+                  sx={{
+                    justifyContent: open ? "initial" : "center",
+                    px: 2.5,
+                  }}
+                  className={`rounded-lg mr-16 mb-3 mt-4 h-[30px] ${
+                    asPath === "/Liquidity" ? "bg-green-100" : ""
+                  }`}
+                >
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 1 : "auto",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <AccountBalanceWalletIcon
+                      className={`text-sm ${
+                        asPath === "/Liquidity" ? "text-[#27AE60]" : ""
+                      }`}
+                    />
+                  </ListItemIcon>
+                  <ListItemText sx={{ opacity: open ? 1 : 0, fontSize: "2px" }}>
+                    <p
+                      className={`text-sm hover:cursor-pointer ${
+                        asPath === "/Liquidity"
+                          ? "text-[#27AE60]"
+                          : "text-gray-700"
+                      }`}
+                    >
+                      Liquidity
                     </p>
                   </ListItemText>
                 </ListItemButton>
