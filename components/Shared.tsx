@@ -56,7 +56,6 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   alignItems: "center",
   justifyContent: "flex-end",
   padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
   ...theme.mixins.toolbar,
   transition: theme.transitions.create(["width", "margin"], {
     easing: theme.transitions.easing.sharp,
@@ -105,6 +104,7 @@ const Drawer = styled(MuiDrawer, {
     "& .MuiDrawer-paper": closedMixin(theme),
   }),
 }));
+
 type Props = {
   children: React.ReactNode | React.ReactNode[];
   tab: string;
@@ -122,6 +122,45 @@ export default function Shared({ children, tab }: Props) {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  const sidebarOptions = [
+    {
+      path: "/",
+      text: "Dashboard",
+      icon: <DashboardIcon />,
+      active: asPath === "/",
+    },
+    {
+      path: "/Users",
+      text: "Users",
+      icon: <PeopleIcon />,
+      active: asPath === "/Users",
+    },
+    {
+      path: "/Trade",
+      text: "Trade",
+      icon: <EqualizerIcon />,
+      active: asPath === "/Trade",
+    },
+    {
+      path: "/Transactions",
+      text: "Transactions",
+      icon: <CurrencyExchangeIcon />,
+      active: asPath === "/Transactions",
+    },
+    {
+      path: "/Liquidity",
+      text: "Liquidity",
+      icon: <AccountBalanceWalletIcon />,
+      active: asPath === "/Liquidity",
+    },
+    {
+      path: "/History",
+      text: "History",
+      icon: <HistoryIcon />,
+      active: asPath === "/History",
+    },
+  ];
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -155,259 +194,59 @@ export default function Shared({ children, tab }: Props) {
               height={21.95}
             />
           </div>
-          {/* <p
-            className={`absolute left-12 text-[25px] mb-1 font-bold ${
-              !open && "hidden"
-            }`}
-          >
-            rubix
-          </p> */}
         </DrawerHeader>
         <div className="pl-10 pr-10">
           <Divider />
         </div>
         <List
-          className={`text-lg ${
+          className={`text-lg mt-10 ${
             open ? "ml-5" : "ml-3"
           } transition-all duration-${
             theme.transitions.duration.leavingScreen
           }`}
         >
-          <ListItem disablePadding sx={{ display: "block" }}>
-            <Link href="/">
-              <a>
-                <ListItemButton
-                  sx={{
-                    justifyContent: open ? "initial" : "center",
-                    px: 2.5,
-                  }}
-                  className={`rounded-lg mr-16 mb-3 mt-4 h-[30px] ${
-                    asPath === "/" ? "bg-green-100" : ""
-                  }`}
-                >
-                  <ListItemIcon
+          {sidebarOptions.map((option, index) => (
+            <ListItem key={index} disablePadding sx={{ display: "block" }}>
+              <Link href={option.path}>
+                <a>
+                  <ListItemButton
                     sx={{
-                      minWidth: 0,
-                      mr: open ? 1 : "auto",
-                      justifyContent: "center",
+                      justifyContent: open ? "initial" : "center",
+                      px: 2.5,
                     }}
+                    className={`rounded-lg mr-16 mb-3 h-[30px] ${
+                      option.active ? "bg-green-100" : ""
+                    }`}
                   >
-                    <DashboardIcon
-                      className={`text-sm ${
-                        asPath === "/" ? "text-[#27AE60]" : ""
-                      }`}
-                    />
-                  </ListItemIcon>
-                  <ListItemText sx={{ opacity: open ? 1 : 0, fontSize: "2px" }}>
-                    <p
-                      className={`text-sm hover:cursor-pointer ${
-                        asPath === "/" ? "text-[#27AE60]" : "text-gray-700"
-                      }`}
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        mr: open ? 1 : "auto",
+                        justifyContent: "center",
+                      }}
                     >
-                      Dashboard
-                    </p>
-                  </ListItemText>
-                </ListItemButton>
-              </a>
-            </Link>
-          </ListItem>
-
-          <ListItem disablePadding sx={{ display: "block" }}>
-            <Link href="/Users">
-              <a>
-                <ListItemButton
-                  sx={{
-                    justifyContent: open ? "initial" : "center",
-                    px: 2.5,
-                  }}
-                  className={`rounded-lg mr-16 mb-3 h-[30px] ${
-                    asPath === "/Users" ? "bg-green-100" : ""
-                  }`}
-                >
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 1 : "auto",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <PeopleIcon
-                      className={`text-sm ${
-                        asPath === "/Users" ? "text-[#27AE60]" : ""
-                      }`}
-                    />
-                  </ListItemIcon>
-                  <ListItemText sx={{ opacity: open ? 1 : 0, fontSize: "2px" }}>
-                    <p
-                      className={`text-sm hover:cursor-pointer ${
-                        asPath === "/Users" ? "text-[#27AE60]" : "text-gray-700"
-                      }`}
+                      {React.cloneElement(option.icon, {
+                        className: `text-sm ${
+                          option.active ? "text-[#27AE60]" : ""
+                        }`,
+                      })}
+                    </ListItemIcon>
+                    <ListItemText
+                      sx={{ opacity: open ? 1 : 0, fontSize: "2px" }}
                     >
-                      Users
-                    </p>
-                  </ListItemText>
-                </ListItemButton>
-              </a>
-            </Link>
-          </ListItem>
-          <ListItem disablePadding sx={{ display: "block" }}>
-            <Link href="/Trade">
-              <a>
-                <ListItemButton
-                  sx={{
-                    justifyContent: open ? "initial" : "center",
-                    px: 2.5,
-                  }}
-                  className={`rounded-lg mr-16 mb-3 h-[30px] ${
-                    asPath === "/Trade" ? "bg-green-100" : ""
-                  }`}
-                >
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 1 : "auto",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <EqualizerIcon
-                      className={`text-sm ${
-                        asPath === "/Trade" ? "text-[#27AE60]" : ""
-                      }`}
-                    />
-                  </ListItemIcon>
-                  <ListItemText sx={{ opacity: open ? 1 : 0, fontSize: "2px" }}>
-                    <p
-                      className={`text-sm hover:cursor-pointer ${
-                        asPath === "/Trade" ? "text-[#27AE60]" : "text-gray-700"
-                      }`}
-                    >
-                      Trade
-                    </p>
-                  </ListItemText>
-                </ListItemButton>
-              </a>
-            </Link>
-          </ListItem>
-          <ListItem disablePadding sx={{ display: "block" }}>
-            <Link href="/Transactions">
-              <a>
-                <ListItemButton
-                  sx={{
-                    justifyContent: open ? "initial" : "center",
-                    px: 2.5,
-                  }}
-                  className={`rounded-lg mr-16 mb-3 h-[30px] ${
-                    asPath === "/Orders" ? "bg-green-100" : ""
-                  }`}
-                >
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 1 : "auto",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <CurrencyExchangeIcon
-                      className={`text-sm  ${
-                        asPath === "/Transactions" ? "text-[#27AE60]" : ""
-                      }`}
-                    />
-                  </ListItemIcon>
-                  <ListItemText sx={{ opacity: open ? 1 : 0, fontSize: "2px" }}>
-                    <p
-                      className={`text-sm hover:cursor-pointer ${
-                        asPath === "/Transactions"
-                          ? "text-[#27AE60]"
-                          : "text-gray-700"
-                      }`}
-                    >
-                      Transactions
-                    </p>
-                  </ListItemText>
-                </ListItemButton>
-              </a>
-            </Link>
-          </ListItem>
-          <ListItem disablePadding sx={{ display: "block" }}>
-            <Link href="/Liquidity">
-              <a>
-                <ListItemButton
-                  sx={{
-                    justifyContent: open ? "initial" : "center",
-                    px: 2.5,
-                  }}
-                  className={`rounded-lg mr-16 mb-3 mt-4 h-[30px] ${
-                    asPath === "/Liquidity" ? "bg-green-100" : ""
-                  }`}
-                >
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 1 : "auto",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <AccountBalanceWalletIcon
-                      className={`text-sm ${
-                        asPath === "/Liquidity" ? "text-[#27AE60]" : ""
-                      }`}
-                    />
-                  </ListItemIcon>
-                  <ListItemText sx={{ opacity: open ? 1 : 0, fontSize: "2px" }}>
-                    <p
-                      className={`text-sm hover:cursor-pointer ${
-                        asPath === "/Liquidity"
-                          ? "text-[#27AE60]"
-                          : "text-gray-700"
-                      }`}
-                    >
-                      Liquidity
-                    </p>
-                  </ListItemText>
-                </ListItemButton>
-              </a>
-            </Link>
-          </ListItem>
-          <ListItem disablePadding sx={{ display: "block" }}>
-            <Link href="/History">
-              <a>
-                <ListItemButton
-                  sx={{
-                    justifyContent: open ? "initial" : "center",
-                    px: 2.5,
-                  }}
-                  className={`rounded-lg mr-16 mb-2 h-[30px] ${
-                    asPath === "/History" ? "bg-green-100" : ""
-                  }`}
-                >
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 1 : "auto",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <HistoryIcon
-                      className={`text-sm ${
-                        asPath === "/History" ? "text-[#27AE60]" : ""
-                      }`}
-                    />
-                  </ListItemIcon>
-                  <ListItemText sx={{ opacity: open ? 1 : 0, fontSize: "2px" }}>
-                    <p
-                      className={`text-sm hover:cursor-pointer ${
-                        asPath === "/History"
-                          ? "text-[#27AE60]"
-                          : "text-gray-700"
-                      }`}
-                    >
-                      History
-                    </p>
-                  </ListItemText>
-                </ListItemButton>
-              </a>
-            </Link>
-          </ListItem>
+                      <p
+                        className={`text-sm hover:cursor-pointer ${
+                          option.active ? "text-[#27AE60]" : "text-gray-700"
+                        }`}
+                      >
+                        {option.text}
+                      </p>
+                    </ListItemText>
+                  </ListItemButton>
+                </a>
+              </Link>
+            </ListItem>
+          ))}
         </List>
         <DrawerHeader>
           <IconButton
@@ -415,9 +254,6 @@ export default function Shared({ children, tab }: Props) {
             aria-label="open drawer"
             onClick={open ? handleDrawerClose : handleDrawerOpen}
             edge="end"
-            // sx={{
-            //   ...(open && { display: "none" }),
-            // }}
             className={`absolute bottom-4 right-4 ${open ? "rotate-180" : ""}`}
           >
             <StartIcon className="text-[gray]" />
