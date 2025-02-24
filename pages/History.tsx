@@ -6,6 +6,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import Tooltip from "@mui/material/Tooltip";
 
 type Props = {};
+
 export const columns: ColumnDef<any, any>[] = [
   {
     accessorKey: "date",
@@ -44,7 +45,7 @@ export const columns: ColumnDef<any, any>[] = [
               } h-fit`}
             />
           ) : (
-            <Tooltip title="Desposite is going to expire in ~28mins">
+            <Tooltip title="Deposit is going to expire in ~28mins">
               <Chip
                 label={row.getValue()}
                 size="small"
@@ -100,20 +101,26 @@ const data = [
     status: "expired",
   },
 ];
+
 export default function History({}: Props) {
   return (
-    <>
-      <Shared tab="history">
-        <div className="w-[95%] m-auto rounded-lg">
-          <div className="flex gap-2 mb-6">
-            <div className="bg-green-100 p-1 pl-4 pr-4 rounded-lg text-green-500 text-sm">
-              Deposite
-            </div>
-            <div className="p-1 pl-4 pr-4 rounded-lg text-sm">Withdraw</div>
+    <Shared tab="history">
+      <div className="w-full max-w-5xl mx-auto rounded-lg p-4">
+        {/* Filter Buttons */}
+        <div className="flex flex-wrap gap-2 mb-6">
+          <div className="bg-green-100 px-4 py-1 rounded-lg text-green-500 text-xs md:text-sm">
+            Deposit
           </div>
+          <div className="px-4 py-1 rounded-lg text-xs md:text-sm">
+            Withdraw
+          </div>
+        </div>
+
+        {/* Table Wrapper for Responsive Scrolling */}
+        <div className="overflow-x-auto">
           <Table data={data} columns={columns} />
         </div>
-      </Shared>
-    </>
+      </div>
+    </Shared>
   );
 }
