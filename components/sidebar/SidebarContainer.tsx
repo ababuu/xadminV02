@@ -4,10 +4,17 @@ import MuiDrawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import PeopleIcon from "@mui/icons-material/People";
+import EqualizerIcon from "@mui/icons-material/Equalizer";
+import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
+import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
+import HistoryIcon from "@mui/icons-material/History";
 import StartIcon from "@mui/icons-material/Start";
 import Image from "next/image";
 import SidebarItem from "./SidebarItem";
 import { useRouter } from "next/router";
+import { useMediaQuery } from "@mui/material";
 
 const drawerWidth = 255;
 
@@ -77,6 +84,8 @@ const SidebarContainer: React.FC<SidebarContainerProps> = ({
   handleDrawerClose,
   handleDrawerOpen,
 }) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const { asPath } = useRouter();
 
   const sidebarOptions = [
@@ -119,7 +128,12 @@ const SidebarContainer: React.FC<SidebarContainerProps> = ({
   ];
 
   return (
-    <Drawer variant="permanent" open={open} className="relative">
+    <Drawer
+      variant={isMobile ? "temporary" : "permanent"}
+      open={open}
+      onClose={handleDrawerClose}
+      className="relative"
+    >
       <DrawerHeader className="relative">
         <div className="absolute left-4">
           <Image src="/images/logo.png" alt="Bitcoin" width={25} height={25} />
@@ -159,7 +173,7 @@ const SidebarContainer: React.FC<SidebarContainerProps> = ({
       <DrawerHeader>
         <IconButton
           color="inherit"
-          aria-label="open drawer"
+          aria-label="toggle drawer"
           onClick={open ? handleDrawerClose : handleDrawerOpen}
           edge="end"
           className={`absolute bottom-4 right-4 ${open ? "rotate-180" : ""}`}
