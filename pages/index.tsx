@@ -1,3 +1,5 @@
+"use client";
+
 import type { NextPage } from "next";
 import Head from "next/head";
 import Shared from "../components/Shared";
@@ -15,183 +17,6 @@ const TableCell = styled(MuiTableCell)({
 });
 
 const Home: NextPage = () => {
-  const Home = () => {
-    return (
-      <div className="bg-gray-100 p-8 pt-8">
-        <div className="flex justify-center md:justify-end lg:justify-end lg:mr-[5%]">
-          <div className="flex gap-2">
-            <div className="border rounded-xl w-fit p-1 pl-4 pr-4 bg-[#14EA83] text-white hover:bg-[#14EA83] hover:text-white cursor-pointer">
-              All
-            </div>
-            <div className="border rounded-xl w-fit p-1 pl-4 pr-4 hover:bg-[#14EA83] hover:text-white cursor-pointer">
-              1M
-            </div>
-            <div className="border rounded-xl w-fit p-1 pl-4 pr-4 hover:bg-[#14EA83] hover:text-white cursor-pointer">
-              6M
-            </div>
-            <div className="border rounded-xl w-fit p-1 pl-4 pr-4 hover:bg-[#14EA83] hover:text-white cursor-pointer">
-              1Y
-            </div>
-            <div className="border rounded-xl w-fit p-1 pl-4 pr-4 hover:bg-[#14EA83] hover:text-white cursor-pointer">
-              YTD
-            </div>
-          </div>
-        </div>
-        <div className="mt-6 flex flex-col w-[95%] m-auto p-0 lg:flex-row md:flex-row flex-wrap gap-10 gap-y-4 justify-center">
-          <div className="flex gap-4 w-[21%] p-4 m-0 bg-white rounded-xl">
-            <div className="text-[#14EA83]">
-              <BarChartIcon />
-            </div>
-            <div>
-              <div className="text-xs text-gray-500">Deposited</div>
-              <div className="text-lg">9898</div>
-            </div>
-          </div>
-          <div className="flex gap-4 m-0  w-[21%] p-4 bg-white rounded-xl">
-            <div className="text-[#14EA83]">
-              <BarChartIcon />
-            </div>
-            <div>
-              <div className="text-xs text-gray-500">Withdraws</div>
-              <div className="text-lg">9898</div>
-            </div>
-          </div>
-          <div className="flex gap-4 m-0 w-[21%] p-4 bg-white rounded-xl">
-            <div className="text-[#14EA83]">
-              <BarChartIcon />
-            </div>
-            <div>
-              <div className="text-xs text-gray-500">Sent</div>
-              <div className="text-lg">9898</div>
-            </div>
-          </div>
-          <div className="flex gap-4 m-0 w-[21%] p-4 bg-white rounded-xl">
-            <div className="text-[#14EA83]">
-              <BarChartIcon />
-            </div>
-            <div>
-              <div className="text-xs text-gray-500">Received</div>
-              <div className="text-lg">9898</div>
-            </div>
-          </div>
-          <div className="flex gap-4 m-0  w-[21%] p-4 bg-white rounded-xl">
-            <div className="text-[#14EA83]">
-              <BarChartIcon />
-            </div>
-            <div>
-              <div className="text-xs text-gray-500">Number of users</div>
-              <div className="text-lg">9898</div>
-            </div>
-          </div>
-          <div className="flex gap-4 m-0  w-[21%] p-4 bg-white rounded-xl">
-            <div className="text-[#14EA83]">
-              <BarChartIcon />
-            </div>
-            <div>
-              <div className="text-xs text-gray-500">Successful</div>
-              <div className="text-lg">9898</div>
-            </div>
-          </div>
-          <div className="flex gap-4 m-0  w-[21%] p-4 bg-white rounded-xl">
-            <div className="text-[#14EA83]">
-              <BarChartIcon />
-            </div>
-            <div>
-              <div className="text-xs text-gray-500">Pending transactions</div>
-              <div className="text-lg">9898</div>
-            </div>
-          </div>
-          <div className="flex gap-4 m-0 w-[21%] p-4 bg-white rounded-xl">
-            <div className="text-[#14EA83]">
-              <BarChartIcon />
-            </div>
-            <div>
-              <div className="text-xs text-gray-500">Failed transactions</div>
-              <div className="text-lg">9898</div>
-            </div>
-          </div>
-        </div>
-        <div className="bg-white w-[91%] m-auto mt-16 p-6 rounded-xl">
-          <p className="pl-4 text-lg">Recent Transactions</p>
-          <TableContainer>
-            <Table
-              sx={{ minWidth: 650 }}
-              size="small"
-              aria-label="simple table"
-            >
-              <TableBody>
-                <TableRow className="text-xs">
-                  <TableCell>
-                    <Image
-                      src="/images/bitcoin.png"
-                      alt="Bitcoin"
-                      width={40}
-                      height={40}
-                    />
-                  </TableCell>
-                  <TableCell className="text-xs text-gray-600">
-                    Bitcoin
-                  </TableCell>
-                  <TableCell className="text-xs text-gray-600">
-                    10:45:00 AM
-                  </TableCell>
-                  <TableCell className="text-xs text-gray-600">
-                    +154.00$
-                  </TableCell>
-                  <TableCell className="text-xs text-green-400">
-                    Completed
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>
-                    <Image
-                      src="/images/ethereum.png"
-                      alt="Bitcoin"
-                      width={40}
-                      height={40}
-                    />
-                  </TableCell>
-                  <TableCell className="text-xs text-gray-600">
-                    Ethereum
-                  </TableCell>
-                  <TableCell className="text-xs text-gray-600">
-                    10:45:00 AM
-                  </TableCell>
-                  <TableCell className="text-xs text-gray-600">
-                    +154.00$
-                  </TableCell>
-                  <TableCell className="text-xs text-gray-400">
-                    pending
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>
-                    <Image
-                      src="/images/litecoin.png"
-                      alt="Bitcoin"
-                      width={40}
-                      height={40}
-                    />
-                  </TableCell>
-                  <TableCell className="text-xs text-gray-600">LTC</TableCell>
-                  <TableCell className="text-xs text-gray-600">
-                    10:45:00 AM
-                  </TableCell>
-                  <TableCell className="text-xs text-gray-600">
-                    +154.00$
-                  </TableCell>
-                  <TableCell className="text-xs text-green-400">
-                    Completed
-                  </TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </div>
-      </div>
-    );
-  };
-
   return (
     <div>
       <Head>
@@ -201,7 +26,106 @@ const Home: NextPage = () => {
       </Head>
       <div>
         <Shared tab="home">
-          <Home />
+          <div className="bg-gray-100 p-4 md:p-8">
+            {/* Filter Buttons */}
+            <div className="flex justify-center md:justify-end lg:mr-[5%]">
+              <div className="flex gap-2 flex-wrap">
+                {["All", "1M", "6M", "1Y", "YTD"].map((item) => (
+                  <div
+                    key={item}
+                    className="border rounded-xl px-4 py-1 cursor-pointer hover:bg-[#14EA83] hover:text-white text-sm md:text-base"
+                  >
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Statistics Cards */}
+            <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-7xl mx-auto">
+              {[
+                "Deposited",
+                "Withdraws",
+                "Sent",
+                "Received",
+                "Number of users",
+                "Successful",
+                "Pending transactions",
+                "Failed transactions",
+              ].map((title) => (
+                <div
+                  key={title}
+                  className="flex items-center gap-4 p-4 bg-white rounded-xl shadow w-full max-w-sm mx-auto lg:w-[21%]"
+                >
+                  <div className="text-[#14EA83]">
+                    <BarChartIcon />
+                  </div>
+                  <div>
+                    <div className="text-xs text-gray-500">{title}</div>
+                    <div className="text-lg font-semibold">9898</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Recent Transactions Table */}
+            <div className="bg-white w-full max-w-5xl mx-auto mt-10 p-6 rounded-xl overflow-x-auto">
+              <p className="text-lg font-semibold pb-4">Recent Transactions</p>
+              <TableContainer>
+                <Table
+                  sx={{ minWidth: 650 }}
+                  size="small"
+                  aria-label="simple table"
+                >
+                  <TableBody>
+                    {[
+                      {
+                        src: "/images/bitcoin.png",
+                        name: "Bitcoin",
+                        status: "Completed",
+                        color: "text-green-400",
+                      },
+                      {
+                        src: "/images/ethereum.png",
+                        name: "Ethereum",
+                        status: "Pending",
+                        color: "text-gray-400",
+                      },
+                      {
+                        src: "/images/litecoin.png",
+                        name: "LTC",
+                        status: "Completed",
+                        color: "text-green-400",
+                      },
+                    ].map((item, index) => (
+                      <TableRow key={index} className="whitespace-nowrap">
+                        <TableCell>
+                          <Image
+                            src={item.src}
+                            alt={item.name}
+                            width={40}
+                            height={40}
+                          />
+                        </TableCell>
+                        <TableCell className="text-xs text-gray-600">
+                          {item.name}
+                        </TableCell>
+                        <TableCell className="text-xs text-gray-600">
+                          10:45:00 AM
+                        </TableCell>
+                        <TableCell className="text-xs text-gray-600">
+                          +154.00$
+                        </TableCell>
+                        <TableCell className={`text-xs ${item.color}`}>
+                          {item.status}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </div>
+          </div>
         </Shared>
       </div>
     </div>
