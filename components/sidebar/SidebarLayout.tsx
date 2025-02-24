@@ -1,5 +1,5 @@
 import * as React from "react";
-import { styled, useTheme, Theme, CSSObject } from "@mui/material/styles";
+import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -32,6 +32,14 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
+// DrawerHeader (Fix for "not found" issue)
+const DrawerHeader = styled("div")(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  padding: theme.spacing(0, 1),
+  ...theme.mixins.toolbar,
+}));
+
 type Props = {
   children: React.ReactNode | React.ReactNode[];
   tab: string;
@@ -40,13 +48,19 @@ type Props = {
 const SidebarLayout: React.FC<Props> = ({ children, tab }) => {
   const [open, setOpen] = React.useState(true);
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
+  React.useEffect(() => {
+    // Collapse the sidebar on smaller screens
+    const handleResize = () => {
+      setOpen(window.innerWidth > 768);
+    };
 
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Set initial state
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const handleDrawerOpen = () => setOpen(true);
+  const handleDrawerClose = () => setOpen(false);
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -64,7 +78,7 @@ const SidebarLayout: React.FC<Props> = ({ children, tab }) => {
         handleDrawerOpen={handleDrawerOpen}
       />
       <Box component="main" sx={{ flexGrow: 1 }}>
-        <DrawerHeader />
+        <DrawerHeader /> {/* Fix for missing DrawerHeader */}
         {children}
       </Box>
     </Box>
