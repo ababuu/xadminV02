@@ -22,39 +22,42 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
 }) => {
   return (
     <ListItem disablePadding sx={{ display: "block" }}>
-      <Link href={path}>
-        <a>
-          <ListItemButton
+      <Link href={path} passHref>
+        <ListItemButton
+          sx={{
+            justifyContent: open ? "initial" : "center",
+            px: open ? 2.5 : 1,
+            minHeight: "40px",
+          }}
+          className={`rounded-lg w-full mb-2 transition-all ${
+            active ? "bg-green-100" : ""
+          }`}
+        >
+          <ListItemIcon
             sx={{
-              justifyContent: open ? "initial" : "center",
-              px: 2.5,
+              minWidth: 0,
+              mr: open ? 1 : "auto",
+              justifyContent: "center",
             }}
-            className={`rounded-lg mr-16 mb-3 h-[30px] ${
-              active ? "bg-green-100" : ""
-            }`}
           >
-            <ListItemIcon
-              sx={{
-                minWidth: 0,
-                mr: open ? 1 : "auto",
-                justifyContent: "center",
-              }}
-            >
-              {React.cloneElement(icon, {
-                className: `text-sm ${active ? "text-[#27AE60]" : ""}`,
-              })}
-            </ListItemIcon>
-            <ListItemText sx={{ opacity: open ? 1 : 0, fontSize: "2px" }}>
-              <p
-                className={`text-sm hover:cursor-pointer ${
-                  active ? "text-[#27AE60]" : "text-gray-700"
-                }`}
-              >
-                {text}
-              </p>
-            </ListItemText>
-          </ListItemButton>
-        </a>
+            {React.cloneElement(icon, {
+              className: `text-lg sm:text-base ${
+                active ? "text-[#27AE60]" : "text-gray-600"
+              }`,
+            })}
+          </ListItemIcon>
+
+          {open && (
+            <ListItemText
+              primary={
+                <p className="text-sm sm:text-base text-gray-700 hover:cursor-pointer">
+                  {text}
+                </p>
+              }
+              sx={{ display: { xs: "none", sm: "block" } }} // Hide text on extra small screens
+            />
+          )}
+        </ListItemButton>
       </Link>
     </ListItem>
   );
