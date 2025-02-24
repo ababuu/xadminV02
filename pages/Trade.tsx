@@ -56,7 +56,6 @@ const columns: ColumnDef<any, any>[] = [
         <Chip
           label={row.getValue()}
           size="small"
-          // color={row.getValue() === "active" ? "primary" : "default"}
           className={`${
             row.getValue() === "open"
               ? "bg-green-100 text-green-500"
@@ -260,18 +259,19 @@ const data = [
 ];
 export default function Trade({}: Props) {
   return (
-    <>
-      <Shared tab="trade">
-        <div className="w-[95%] m-auto rounded-lg">
-          <div className="flex gap-2 mb-6">
-            <div className="bg-green-100 p-1 pl-4 pr-4 rounded-lg text-green-500 text-sm">
-              All
-            </div>
-            <div className="p-1 pl-4 pr-4 rounded-lg text-sm">Open</div>
+    <Shared tab="trade">
+      <div className="w-full max-w-screen-xl mx-auto rounded-lg px-4">
+        {/* Filter buttons */}
+        <div className="flex gap-2 mb-6 flex-wrap">
+          <div className="bg-green-100 p-2 pl-4 pr-4 rounded-lg text-green-500 text-sm">
+            All
           </div>
-          <Table data={data} columns={columns} />
+          <div className="p-2 pl-4 pr-4 rounded-lg text-sm">Open</div>
         </div>
-      </Shared>
-    </>
+
+        {/* Table component */}
+        <Table data={data} columns={columns} />
+      </div>
+    </Shared>
   );
 }
