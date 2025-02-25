@@ -31,31 +31,29 @@ export const columns: ColumnDef<any, any>[] = [
   {
     accessorKey: "status",
     header: "STATUS",
-    cell: (row: any) => {
-      return (
-        <>
-          {row.getValue() !== "pending" ? (
+    cell: (row: any) => (
+      <>
+        {row.getValue() !== "pending" ? (
+          <Chip
+            label={row.getValue()}
+            size="small"
+            className={`${
+              row.getValue() === "succeeded"
+                ? "bg-green-100 text-green-500"
+                : "bg-red-100 text-red-500"
+            } h-fit`}
+          />
+        ) : (
+          <Tooltip title="Deposit is going to expire in ~28mins">
             <Chip
               label={row.getValue()}
               size="small"
-              className={`${
-                row.getValue() === "succeeded"
-                  ? "bg-green-100 text-green-500"
-                  : "bg-red-100 text-red-500"
-              } h-fit`}
+              className="bg-orange-100 text-orange-500 h-fit"
             />
-          ) : (
-            <Tooltip title="Deposit is going to expire in ~28mins">
-              <Chip
-                label={row.getValue()}
-                size="small"
-                className="bg-orange-100 text-orange-500 h-fit"
-              />
-            </Tooltip>
-          )}
-        </>
-      );
-    },
+          </Tooltip>
+        )}
+      </>
+    ),
   },
 ];
 
@@ -105,13 +103,14 @@ const data = [
 export default function History({}: Props) {
   return (
     <Shared tab="history">
+      {/* Main Container */}
       <div className="w-full max-w-5xl mx-auto rounded-lg p-4">
         {/* Filter Buttons */}
         <div className="flex flex-wrap gap-2 mb-6">
           <div className="bg-green-100 px-4 py-1 rounded-lg text-green-500 text-xs md:text-sm">
             Deposit
           </div>
-          <div className="px-4 py-1 rounded-lg text-xs md:text-sm">
+          <div className="px-4 py-1 rounded-lg text-xs md:text-sm hover:bg-green-100 hover:text-green-500 cursor-pointer">
             Withdraw
           </div>
         </div>
